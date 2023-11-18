@@ -3,10 +3,10 @@
   <PropertyGroup>
     <Authors>TryPhotino</Authors>
     <Company>TryPhotino</Company>
-    <Description>.NET 6/7 app that opens native OS windows hosting web UI on Windows, Mac, and Linux (without Blazor support)</Description>
+    <Description>.NET 8 app that opens native OS windows hosting web UI on Windows, Mac, and Linux (without Blazor support)</Description>
     <GenerateNuspecDependsOn>$(GenerateNuspecDependsOn);SetPackageVersion</GenerateNuspecDependsOn>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
-    <PackageDescription>.NET 6/7 app that opens native OS windows hosting web UI on Windows, Mac, and Linux (without Blazor support)</PackageDescription>
+    <PackageDescription>.NET 8 app that opens native OS windows hosting web UI on Windows, Mac, and Linux (without Blazor support)</PackageDescription>
     <PackageId>Photino.NET</PackageId>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
     <Product>Photino.NET</Product>
@@ -18,7 +18,7 @@
   
   <PropertyGroup>
     <OutputType>Library</OutputType>
-    <TargetFrameworks>net6.0;net7.0</TargetFrameworks>
+    <TargetFrameworks>net8.0</TargetFrameworks>
     <IsPackable>true</IsPackable> 
   </PropertyGroup>
 
@@ -28,8 +28,18 @@
     </PropertyGroup>
   </Target>
 
-  <ItemGroup>
-    <PackageReference Include="Photino.Native" Version="2.5.0" />
+  <!--<ItemGroup>-->
+  <!--<PackageReference Include="Photino.Native" Version="2.5.0" />-->
+  <!--</ItemGroup>-->
+  <ItemGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <Reference Include="Photino.Native">
+      <HintPath>..\..\photino.Native\Photino.Native\x64\Debug\Photino.Native.dll</HintPath>
+    </Reference>
   </ItemGroup>
-
+  
+  <ItemGroup Condition=" '$(Configuration)' == 'Release' ">
+    <Reference Include="Photino.Native">
+      <HintPath>..\..\photino.Native\Photino.Native\x64\Release\Photino.Native.dll</HintPath>
+    </Reference>
+  </ItemGroup>
 </Project>
