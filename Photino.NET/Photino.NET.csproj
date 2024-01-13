@@ -32,14 +32,20 @@
   <!--<PackageReference Include="Photino.Native" Version="2.5.0" />-->
   <!--</ItemGroup>-->
   <ItemGroup Condition=" '$(Configuration)' == 'Debug' ">
-    <Reference Include="Photino.Native">
-      <HintPath>..\..\photino.Native\Photino.Native\x64\Debug\Photino.Native.dll</HintPath>
+    <Reference Include="Photino.Native" Condition="$([MSBuild]::IsOSPlatform('Windows'))">
+      <HintPath>..\..\photino.Native\Photino.Native\lib\x64\Debug\Photino.Native.dll</HintPath>
+    </Reference>
+    <Reference Include="Photino.Native" Condition="$([MSBuild]::IsOSPlatform('OSX'))">
+      <HintPath>../../photino.Native/out/build/macos-debug/Photino.Native/libPhotino.Native.dylib</HintPath>
     </Reference>
   </ItemGroup>
   
   <ItemGroup Condition=" '$(Configuration)' == 'Release' ">
-    <Reference Include="Photino.Native">
+    <Reference Include="Photino.Native" Condition="$([MSBuild]::IsOSPlatform('Windows'))">
       <HintPath>..\..\photino.Native\Photino.Native\x64\Release\Photino.Native.dll</HintPath>
+    </Reference>
+    <Reference Include="Photino.Native" Condition="$([MSBuild]::IsOSPlatform('OSX'))">
+      <HintPath>../../photino.Native/out/build/macos-release/Photino.Native/libPhotino.Native.dylib</HintPath>
     </Reference>
   </ItemGroup>
 </Project>
